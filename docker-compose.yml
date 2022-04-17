@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  apache:
+    build: .docker/apache
+    container_name: blog_apache
+    restart: always
+    ports:
+      - "8245:80"
+    volumes:
+      - ./.docker/apache/vhosts:/etc/apache2/sites-enabled
+      - ./:/var/www
+
+    networks:
+      - dev-environment_default
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adminer.rule=Host(`blog.docker.localhost`)"
+      - "traefik.http.routers.adminer.tls=true"
+
+  db:
+    image: postgres:14.2
+    container_name: blog_database
+    restart: always
+    volumes:
+      - database:/var/lib/mysql
+    environment:
+      POSTGRES_USER: 'romain'
+      POSTGRES_PASSWORD: 'romain'
+      POSTGRES_DB: 'blog'
+      MYSQL_ROOT_PASSWORD: 'root'
+
+volumes:
+  database:
+
+networks:
+  dev-environment_default:
+    external: true
