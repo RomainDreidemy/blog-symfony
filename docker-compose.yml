@@ -9,27 +9,29 @@ services:
       - "8245:80"
     volumes:
       - ./.docker/apache/vhosts:/etc/apache2/sites-enabled
-      - ./:/var/www
+      - ./:/var/www:delegated
 
     networks:
       - dev-environment_default
 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.adminer.rule=Host(`blog.docker.localhost`)"
-      - "traefik.http.routers.adminer.tls=true"
+      - "traefik.http.routers.blog.rule=Host(`blog.docker.localhost`)"
+      - "traefik.http.routers.blog.tls=true"
 
   db:
     image: postgres:14.2
     container_name: blog_database
     restart: always
-    volumes:
-      - database:/var/lib/mysql
     environment:
       POSTGRES_USER: 'romain'
       POSTGRES_PASSWORD: 'romain'
       POSTGRES_DB: 'blog'
       MYSQL_ROOT_PASSWORD: 'root'
+    networks:
+      - dev-environment_default
+    volumes:
+      - database:/var/lib/mysql
 
 volumes:
   database:
