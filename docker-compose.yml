@@ -9,7 +9,9 @@ services:
       - "8245:80"
     volumes:
       - ./.docker/apache/vhosts:/etc/apache2/sites-enabled
-      - ./:/var/www:delegated
+      - ./:/var/www:o
+      - ./cache
+      - ./vendor
 
     networks:
       - dev-environment_default
