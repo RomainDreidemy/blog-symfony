@@ -7,7 +7,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -29,6 +31,7 @@ class PostCrudController extends AbstractCrudController
             ,
             TextField::new('title', 'Titre'),
             TextField::new('slug'),
+            AssociationField::new('tags', 'Tags'),
             TextEditorField::new('body', 'Contenu')
                 ->setFormType(CKEditorType::class)
                 ->setNumOfRows(3)
@@ -40,7 +43,7 @@ class PostCrudController extends AbstractCrudController
                 ->renderAsSwitch(false)
                 ->hideOnForm()
             ,
-            DateTimeField::new('updated_at', 'Modifié le ?')
+            DateTimeField::new('updated_at', 'Modifié le')
                 ->hideOnForm()
             ,
         ];
