@@ -25,7 +25,7 @@ class PictureCrudController extends AbstractCrudController
                 ->setUploadDir('public/uploads/pictures/')
                 ->setUploadedFileNamePattern('[uuid].[extension]')
             ,
-            TextField::new('relative_path', 'Nom de l\'image')
+            TextField::new('relative_path', 'Nom de l\'image')->hideOnForm()
         ];
     }
 
