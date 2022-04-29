@@ -25,6 +25,8 @@ services:
     image: postgres:14.2
     container_name: blog_database
     restart: always
+    ports:
+      - '5432:5432'
     environment:
       POSTGRES_USER: 'romain'
       POSTGRES_PASSWORD: 'romain'
