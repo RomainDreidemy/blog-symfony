@@ -22,8 +22,8 @@ class TagCrudController extends AbstractCrudController
             IdField::new('id')
                 ->hideOnForm()
             ,
-            TextField::new('name'),
-            ColorField::new('color'),
+            TextField::new('name', 'Nom'),
+            ColorField::new('color', 'Couleur'),
         ];
     }
 }

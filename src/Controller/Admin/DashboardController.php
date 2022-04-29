@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Picture;
 use App\Entity\Post;
 use App\Entity\Tag;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -29,6 +30,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToCrud('Articles', 'fas fa-list', Post::class);
-        yield MenuItem::linkToCrud('Tag', 'fas fa-list', Tag::class);
+        yield MenuItem::linkToCrud('Tags', 'fas fa-list', Tag::class);
+        yield MenuItem::linkToCrud('Pictures', 'fas fa-list', Picture::class);
     }
 }
