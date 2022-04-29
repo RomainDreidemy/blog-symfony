@@ -9,7 +9,7 @@ services:
       - "8245:80"
     volumes:
       - ./.docker/apache/vhosts:/etc/apache2/sites-enabled
-      - ./:/var/www:o
+      - ./:/var/www:cached
       - ./cache
       - ./vendor
 
@@ -35,7 +35,7 @@ services:
     networks:
       - dev-environment_default
     volumes:
-      - database:/var/lib/mysql
+      - database:/var/lib/postgresql/data
 
 volumes:
   database:
