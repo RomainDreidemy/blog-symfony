@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Tag;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ColorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -25,5 +26,13 @@ class TagCrudController extends AbstractCrudController
             TextField::new('name', 'Nom'),
             ColorField::new('color', 'Couleur'),
         ];
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Étiquette')
+            ->setEntityLabelInPlural('Étiquettes')
+        ;
     }
 }
