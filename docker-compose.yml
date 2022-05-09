@@ -9,8 +9,8 @@ services:
       - "8245:80"
     volumes:
       - ./.docker/apache/vhosts:/etc/apache2/sites-enabled
-      - ./:/var/www:cached
-      - ./cache
+      - ./:/var/www:ro
+      - ./var
       - ./vendor
 
     networks:
